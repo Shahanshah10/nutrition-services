@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: nutrition-service
+
+server:
+  port: 8081
+
+external-nutrition-api:
+  base-url: https://trackapi.nutritionix.com/v2
+  search-end-point: /search/item/?upc={upc}
+
+eureka:
+  instance:
+    hostname: localhost
