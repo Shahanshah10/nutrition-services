@@ -3,27 +3,30 @@ package com.nutrition.external;
 import com.nutrition.dto.Root;
 import com.nutrition.exception.NutritionServiceException;
 import com.nutrition.properties.NutritionProperties;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Slf4j
 @Service
-@RequiredArgsConstructor
 public class ExternalNutritionApi {
 
+    private static final Logger logger = LoggerFactory.getLogger(ExternalNutritionApi.class);
     private final WebClient webClient;
     private final NutritionProperties nutritionProperties;
+
+    public ExternalNutritionApi(WebClient webClient, NutritionProperties nutritionProperties) {
+        this.webClient = webClient;
+        this.nutritionProperties = nutritionProperties;
+    }
 
 
     public Root searchNutrients(String upc) {
 
-        String nutritionApiUrl=nutritionProperties.getNutritionApiBaseUrl()
-                .concat(nutritionProperties.getNutritionApiSearchEndPoint());
+        String nutritionApiUrl=nutritionProperties.getNutritionApiBaseUrl().concat(nutritionProperties.getNutritionApiSearchEndPoint());
         Map<String,Object> params=new HashMap<>();
         params.put("upc",upc);
 
@@ -34,7 +37,7 @@ public class ExternalNutritionApi {
                     .retrieve().bodyToMono(Root.class)
                     .block();
         }catch (Exception exception){
-            log.error("Exception occurred while retrieving nutrients from nutrition-api : ",exception);
+            logger.error("Exception occurred while retrieving nutrients from nutrition-api : ",exception);
             throw new NutritionServiceException("Exception occurred while retrieving nutrients from nutrition-api : "+exception.getMessage());
         }
 
