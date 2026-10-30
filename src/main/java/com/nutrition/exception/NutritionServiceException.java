@@ -1,9 +1,12 @@
 package com.nutrition.exception;
 
-public class NutritionServiceException extends RuntimeException {
+import java.io.Serializable;
 
-    public NutritionServiceException(String str){
+public class NutritionServiceException extends RuntimeException implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    public NutritionServiceException(String str) {
         super(str);
-   }
-
+    }
 }
