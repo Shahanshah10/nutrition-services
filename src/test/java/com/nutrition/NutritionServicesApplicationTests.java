@@ -4,10 +4,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class NutritionServicesApplicationTests {
+public class NutritionServicesApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
-
+    @Test
+    void contextLoads() {
+        // Add an assert statement or fail() to test the context loading
+        assert true; // or fail("Context loading failed");
+    }
 }
