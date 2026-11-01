@@ -30,18 +30,10 @@ public class ExternalNutritionApi {
         Map<String,Object> params=new HashMap<>();
         params.put("upc",upc);
 
-        try {
-            return webClient.get().uri(nutritionApiUrl,params)
+        return webClient.get().uri(nutritionApiUrl,params)
                     .header("x-app-id", "c4e4f1ba")
                     .header("x-app-key", "c607395a6c73ba1ca86e1ccd99161d4f")
                     .retrieve().bodyToMono(Root.class)
                     .block();
-        }catch (Exception exception){
-            logger.error("Exception occurred while retrieving nutrients from nutrition-api : ",exception);
-            throw new NutritionServiceException("Exception occurred while retrieving nutrients from nutrition-api : "+exception.getMessage());
-        }
-
-
-
     }
 }
