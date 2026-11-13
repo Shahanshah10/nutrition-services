@@ -9,6 +9,6 @@ public class NutritionServicesApplicationTests {
     @Test
     void contextLoads() {
         // Add an assert statement or fail() to test the context loading
-        assert true; // or fail("Context loading failed");
+        // assert true; // or fail("Context loading failed");
     }
 }
